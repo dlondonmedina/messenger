@@ -23,7 +23,7 @@ func serveWs(pool *websocket.Pool, w http.ResponseWriter, r *http.Request) {
 }
 
 func setupRoutes() {
-	pool := websocket.NewPool())
+	pool := websocket.NewPool()
 	go pool.Start()
 
 	http.HandleFunc("/ws", func(w http.ResponseWriter, r *http.Request) {
@@ -34,5 +34,5 @@ func setupRoutes() {
 func main() {
 	fmt.Println("Distributed Chat App v0.0.1")
 	setupRoutes()
-	http.ListenAndServe(":5000", nil)
+	http.ListenAndServe(":8080", nil)
 }

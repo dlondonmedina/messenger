@@ -34,14 +34,15 @@ func (pool *Pool) Start() {
 			for client, _ := range pool.Clients {
 				client.Conn.WriteJSON(Message{Type: 1, Body: "User Disconnected..."})
 			}
-			break 
+			break
 		case message := <-pool.Broadcast:
 			fmt.Println(("Sending message to all clients in the Pool"))
 			for client, _ := range pool.Clients {
 				if err := client.Conn.WriteJSON(message); err != nil {
 					fmt.Println(err)
-					return 
+					return
 				}
 			}
+		}
 	}
 }
